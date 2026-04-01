@@ -894,6 +894,7 @@ services:
       - POSTGRES_HOST
       - POSTGRES_PORT
       - POSTGRES_PASSWORD
+      - HONEYCOMB_API_KEY
       - GOMEMLIMIT=160MiB
 
   # Prometheus
