@@ -1,65 +1,54 @@
-<!-- markdownlint-disable-next-line -->
-# <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OTel logo" width="45"> OpenTelemetry Demo
+# OpenTelemetry Astronomy Shop — O11ycon Workshop Fork
 
-[![Slack](https://img.shields.io/badge/slack-@cncf/otel/demo-brightgreen.svg?logo=slack)](https://cloud-native.slack.com/archives/C03B4CWV4DA)
-[![Version](https://img.shields.io/github/v/release/open-telemetry/opentelemetry-demo?color=blueviolet)](https://github.com/open-telemetry/opentelemetry-demo/releases)
-[![Commits](https://img.shields.io/github/commits-since/open-telemetry/opentelemetry-demo/latest?color=ff69b4&include_prereleases)](https://github.com/open-telemetry/opentelemetry-demo/graphs/commit-activity)
-[![Downloads](https://img.shields.io/docker/pulls/otel/demo)](https://hub.docker.com/r/otel/demo)
+This is a fork of the [OpenTelemetry Demo](https://github.com/open-telemetry/opentelemetry-demo) prepared for the **O11ycon Instrumentation Workshop**, delivered by [Honeycomb](https://honeycomb.io).
+
+## About This Fork
+
+This repository is configured for use in an Instruqt-based workshop where participants add OpenTelemetry instrumentation to a real microservice application. The application has been modified from the upstream demo as follows:
+
+- **Payment service OTel instrumentation has been intentionally removed** — participants add it back as part of the workshop exercises
+- **Honeycomb is pre-configured as the observability backend** — participants supply their own Honeycomb API key
+- **Service set is reduced** to lower memory requirements for the lab environment (accounting, fraud detection, kafka, grafana, jaeger, opensearch, prometheus, llm, and product reviews are not included)
+- **`paymentFailure` feature flag is set to 50%** — the payment service randomly fails half of all charge requests by design, giving participants real failures to investigate
+
+> **Note:** The `answer-key` branch contains the completed payment service instrumentation for facilitator reference.
+
+## Quick Start
+
+```bash
+git clone https://github.com/dlsdlsdls/ced-open-telemetry-demo-o11ycon.git
+cd ced-open-telemetry-demo-o11ycon
+# Add your Honeycomb API key to .env
+docker compose up -d
+```
+
+Add your Honeycomb ingest key to `.env`:
+```
+HONEYCOMB_API_KEY=your-key-here
+```
+
+Then restart the collector to pick it up:
+```bash
+docker compose up -d otel-collector
+```
+
+---
+
+## Original Project
+
+This fork is based on the **OpenTelemetry Astronomy Shop Demo**, maintained by the OpenTelemetry community. All original credits below apply.
+
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?color=red)](https://github.com/open-telemetry/opentelemetry-demo/blob/main/LICENSE)
-[![Integration Tests](https://github.com/open-telemetry/opentelemetry-demo/actions/workflows/run-integration-tests.yml/badge.svg)](https://github.com/open-telemetry/opentelemetry-demo/actions/workflows/run-integration-tests.yml)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/opentelemetry-demo)](https://artifacthub.io/packages/helm/opentelemetry-helm/opentelemetry-demo)
-[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fopentelemetry-demo.svg?type=shield&issueType=license)](https://app.fossa.com/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fopentelemetry-demo?ref=badge_shield&issueType=license)
-[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fopentelemetry-demo.svg?type=shield&issueType=security)](https://app.fossa.com/projects/custom%2B162%2Fgithub.com%2Fopen-telemetry%2Fopentelemetry-demo?ref=badge_shield&issueType=security)
-[![OpenSSF Scorecard for opentelemetry-demo](https://api.scorecard.dev/projects/github.com/open-telemetry/opentelemetry-demo/badge)](https://scorecard.dev/viewer/?uri=github.com/open-telemetry/opentelemetry-demo)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9247/badge)](https://www.bestpractices.dev/en/projects/9247)
 
-## Welcome to the OpenTelemetry Astronomy Shop Demo
+The OpenTelemetry Astronomy Shop is a microservice-based distributed system intended to illustrate the implementation of OpenTelemetry in a near real-world environment.
 
-This repository contains the OpenTelemetry Astronomy Shop, a microservice-based
-distributed system intended to illustrate the implementation of OpenTelemetry in
-a near real-world environment.
+- [Upstream repository](https://github.com/open-telemetry/opentelemetry-demo)
+- [Demo documentation](https://opentelemetry.io/docs/demo/)
+- [Fork guidance](https://opentelemetry.io/docs/demo/forking/)
 
-Our goals are threefold:
+## Demos Featuring the Astronomy Shop
 
-- Provide a realistic example of a distributed system that can be used to
-  demonstrate OpenTelemetry instrumentation and observability.
-- Build a base for vendors, tooling authors, and others to extend and
-  demonstrate their OpenTelemetry integrations.
-- Create a living example for OpenTelemetry contributors to use for testing new
-  versions of the API, SDK, and other components or enhancements.
-
-We've already made [huge
-progress](https://github.com/open-telemetry/opentelemetry-demo/blob/main/CHANGELOG.md),
-and development is ongoing. We hope to represent the full feature set of
-OpenTelemetry across its languages in the future.
-
-If you'd like to help (**which we would love**), check out our [contributing
-guidance](./CONTRIBUTING.md).
-
-If you'd like to extend this demo or maintain a fork of it, read our
-[fork guidance](https://opentelemetry.io/docs/demo/forking/).
-
-## Quick start
-
-You can be up and running with the demo in a few minutes. Check out the docs for
-your preferred deployment method:
-
-- [Docker](https://opentelemetry.io/docs/demo/docker_deployment/)
-- [Kubernetes](https://opentelemetry.io/docs/demo/kubernetes_deployment/)
-
-## Documentation
-
-For detailed documentation, see [Demo Documentation][docs]. If you're curious
-about a specific feature, the [docs landing page][docs] can point you in the
-right direction.
-
-## Demos featuring the Astronomy Shop
-
-We welcome any vendor to fork the project to demonstrate their services and
-adding a link below. The community is committed to maintaining the project and
-keeping it up to date for you.
-
-|                           |                |                                  |
+| | | |
 |---------------------------|----------------|----------------------------------|
 | [AlibabaCloud LogService] | [Grafana Labs] | [Sentry]                         |
 | [Apache Doris]            | [Guance]       | [ServiceNow Cloud Observability] |
@@ -77,13 +66,7 @@ keeping it up to date for you.
 | [Elastic]                 | [Oracle]       |                                  |
 | [Google Cloud]            | [Parseable]    |                                  |
 
-## Contributing
-
-To get involved with the project see our [CONTRIBUTING](CONTRIBUTING.md)
-documentation. Our [SIG Calls](CONTRIBUTING.md#join-a-sig-call) are every other
-Wednesday at 8:30 AM PST and anyone is welcome.
-
-### Maintainers
+## Maintainers
 
 - [Cyrille Le Clerc](https://github.com/cyrille-leclerc), Grafana Labs
 - [Juliano Costa](https://github.com/julianocosta89), Datadog
@@ -92,7 +75,7 @@ Wednesday at 8:30 AM PST and anyone is welcome.
 
 For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).
 
-### Approvers
+## Approvers
 
 - [Cedric Ziel](https://github.com/cedricziel), Grafana Labs
 - [Mikko Viitanen](https://github.com/mviitane), Dynatrace
@@ -100,7 +83,7 @@ For more information about the maintainer role, see the [community repository](h
 
 For more information about the approver role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver).
 
-### Emeritus
+## Emeritus
 
 - [Austin Parker](https://github.com/austinlparker)
 - [Carter Socha](https://github.com/cartersocha)
@@ -112,11 +95,9 @@ For more information about the approver role, see the [community repository](htt
 
 For more information about the emeritus role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#emeritus-maintainerapprovertriager).
 
-### Thanks to all the people who have contributed
+## Thanks to All Contributors
 
 [![contributors](https://contributors-img.web.app/image?repo=open-telemetry/opentelemetry-demo)](https://github.com/open-telemetry/opentelemetry-demo/graphs/contributors)
-
-[docs]: https://opentelemetry.io/docs/demo/
 
 <!-- Links for Demos featuring the Astronomy Shop section -->
 
