@@ -1,4 +1,4 @@
-# OpenTelemetry Astronomy Shop — O11ycon Workshop Fork
+# OpenTelemetry Telescope Shop — O11ycon Workshop Fork
 
 This is a fork of the [OpenTelemetry Demo](https://github.com/open-telemetry/opentelemetry-demo) prepared for the **O11ycon Instrumentation Workshop**, delivered by [Honeycomb](https://honeycomb.io).
 
